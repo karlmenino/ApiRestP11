@@ -7,10 +7,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Repository
 @DynamicUpdate
 public interface PathologiesDao extends CrudRepository<Pathologies,Long> {
-    public ArrayList<Pathologies> findAllBySpecialite(Specialite specialite);
+    public Optional<Pathologies> findPathologiesByNom(String nom);
 
 }
