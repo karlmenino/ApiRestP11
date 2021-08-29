@@ -17,7 +17,6 @@ public class PathologiesManager {
     public void save(Pathologies pathologies){
        pathologiesDao.save(pathologies);
     }
-    public ArrayList<Pathologies> findBySpecialiteId(Specialite specialite){
-        return pathologiesDao.findAllBySpecialite(specialite);
-    }
+
+    
 }
