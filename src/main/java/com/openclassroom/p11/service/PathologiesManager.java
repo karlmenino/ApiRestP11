@@ -18,5 +18,5 @@ public class PathologiesManager {
        pathologiesDao.save(pathologies);
     }
 
-    
+
 }

@@ -1,8 +1,10 @@
 package com.openclassroom.p11.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
-
+@Data
 @Entity
 @Table(name="specialite")
 public class Specialite {
@@ -20,35 +22,5 @@ public class Specialite {
     @ManyToMany(mappedBy = "specialites")
     private Set<Hopital> hopitals;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCategories() {
-        return categories;
-    }
-
-    public void setCategories(String categories) {
-        this.categories = categories;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public Set<Hopital> getHopitals() {
-        return hopitals;
-    }
-
-    public void setHopitals(Set<Hopital> hopitals) {
-        this.hopitals = hopitals;
-    }
 }

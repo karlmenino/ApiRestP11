@@ -1,8 +1,11 @@
 package com.openclassroom.p11.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Set;
+@Data
 @Entity
 @Table(name="hopital")
 public class Hopital {
@@ -45,77 +48,7 @@ public class Hopital {
 @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private Set<Medecin> medecins;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public int getNbrDeLitsMax() {
-        return nbrDeLitsMax;
-    }
-
-    public void setNbrDeLitsMax(int nbrDeLitsMax) {
-        this.nbrDeLitsMax = nbrDeLitsMax;
-    }
-
-    public int getNbrDeLitsDispo() {
-        return nbrDeLitsDispo;
-    }
-
-    public void setNbrDeLitsDispo(int nbrDeLitsDispo) {
-        this.nbrDeLitsDispo = nbrDeLitsDispo;
-    }
-
-    public double getLattitude() {
-        return lattitude;
-    }
-
-    public void setLattitude(double lattitude) {
-        this.lattitude = lattitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public Set<Medecin> getMedecins() {
-        return medecins;
-    }
-
-    public void setMedecins(Set<Medecin> medecins) {
-        this.medecins = medecins;
-    }
-
-    public Set<Specialite> getSpecialites() {
-        return specialites;
-    }
-
-    public void setSpecialites(Set<Specialite> specialites) {
-        this.specialites = specialites;
-    }
 }
 
 

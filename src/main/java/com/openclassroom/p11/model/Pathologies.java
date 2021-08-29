@@ -1,9 +1,11 @@
 package com.openclassroom.p11.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Data
 @Entity
 @Table(name="pathologies")
 public class Pathologies {
@@ -22,43 +24,6 @@ public class Pathologies {
     @OneToMany(mappedBy = "pathologie", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<HistoriquePathologies> historiquePathologies;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Specialite getSpecialite() {
-        return specialite;
-    }
-
-    public void setSpecialite(Specialite specialite) {
-        this.specialite = specialite;
-    }
-
-    public List<HistoriquePathologies> getHistoriquePathologies() {
-        return historiquePathologies;
-    }
-
-    public void setHistoriquePathologies(List<HistoriquePathologies> historiquePathologies) {
-        this.historiquePathologies = historiquePathologies;
-    }
 }
