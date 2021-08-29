@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="patient")
@@ -14,7 +16,7 @@ public class Patient {
     private long id;
     @Basic
     @Column(name = "numero", nullable = true)
-    private int nDeSécuritéSocial;
+    private int numero;
     @Basic
     @Column(name = "nom", length = 60)
     private String nom;
@@ -24,6 +26,9 @@ public class Patient {
     @Basic
     @Column(name = "age", nullable = true)
     private int age;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HistoriquePathologies> historiquePathologies;
 
     public Long getId() {
         return id;
@@ -37,12 +42,12 @@ public class Patient {
         this.id = id;
     }
 
-    public int getnDeSécuritéSocial() {
-        return nDeSécuritéSocial;
+    public int getNumero() {
+        return numero;
     }
 
-    public void setnDeSécuritéSocial(int nDeSécuritéSocial) {
-        this.nDeSécuritéSocial = nDeSécuritéSocial;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public String getNom() {
@@ -67,5 +72,13 @@ public class Patient {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public List<HistoriquePathologies> getHistoriquePathologies() {
+        return historiquePathologies;
+    }
+
+    public void setHistoriquePathologies(List<HistoriquePathologies> historiquePathologies) {
+        this.historiquePathologies = historiquePathologies;
     }
 }

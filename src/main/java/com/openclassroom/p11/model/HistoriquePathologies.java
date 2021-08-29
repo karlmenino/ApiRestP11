@@ -5,18 +5,23 @@ import java.util.Date;
 @Entity
 @Table(name="historiquesPathologies")
 public class HistoriquePathologies {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Patient Patient;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private Pathologies Pathologie;
+    @ManyToOne
+    @JoinColumn(name="patient_id")
+    private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(name="pathologies_id")
+    private Pathologies pathologie;
+
     @Basic
     @Column(name = "Date", nullable = false)
-    private Date Date;
+    private String Date;
 
     public Long getId() {
         return id;
@@ -26,27 +31,28 @@ public class HistoriquePathologies {
         this.id = id;
     }
 
-    public com.openclassroom.p11.model.Patient getPatient() {
-        return Patient;
+    public Patient getPatient() {
+        return patient;
     }
 
     public void setPatient(Patient patient) {
-        Patient = patient;
+        this.patient = patient;
     }
 
     public Pathologies getPathologie() {
-        return Pathologie;
+        return pathologie;
     }
 
     public void setPathologie(Pathologies pathologie) {
-        Pathologie = pathologie;
+        this.pathologie = pathologie;
     }
 
-    public java.util.Date getDate() {
+    public String getDate() {
         return Date;
     }
 
-    public void setDate(java.util.Date date) {
+    public void setDate(String date) {
         Date = date;
     }
+
 }
