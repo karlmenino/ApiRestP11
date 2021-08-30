@@ -17,7 +17,7 @@ public class Patient {
     private long id;
     @Basic
     @Column(name = "numero", nullable = true)
-    private int numero;
+    private long numero;
     @Basic
     @Column(name = "nom", length = 60)
     private String nom;

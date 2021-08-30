@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 @DynamicUpdate
 public interface PatientDao extends CrudRepository<Patient,Long> {
-    public Optional<Patient> findPatientByNumero(int numero);
+    public Optional<Patient> findPatientByNumero(Long numero);
 }

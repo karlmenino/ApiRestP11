@@ -1,4 +1,4 @@
-package com.openclassroom.p11.service;
+package com.openclassroom.p11.manager;
 
 import com.openclassroom.p11.dao.HistoriquePathologiesDao;
 import com.openclassroom.p11.model.HistoriquePathologies;
@@ -7,9 +7,9 @@ import com.openclassroom.p11.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -28,7 +28,7 @@ public class HistoriquePathologiesManager {
         historique.setDate(date.format(formatter));
         historiquePathologiesDao.save(historique);
     }
-    public List<HistoriquePathologies> getHistoryByPatientNumber(int number){
-        return historiquePathologiesDao.findAllByPatient_Numero(number);
+    public List<HistoriquePathologies> getHistoryByPatientNumber(Long number){
+        return historiquePathologiesDao.findAllByPatientNumero(number);
     }
 }

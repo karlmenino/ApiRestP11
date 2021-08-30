@@ -3,7 +3,7 @@ package com.openclassroom.p11.model;
 import lombok.Data;
 
 import javax.persistence.*;
-@Data
+
 @Entity
 @Table(name="historiquesPathologies")
 public class HistoriquePathologies {
@@ -25,4 +25,35 @@ public class HistoriquePathologies {
     @Column(name = "Date", nullable = false)
     private String Date;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Pathologies getPathologie() {
+        return pathologie;
+    }
+
+    public void setPathologie(Pathologies pathologie) {
+        this.pathologie = pathologie;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
 }

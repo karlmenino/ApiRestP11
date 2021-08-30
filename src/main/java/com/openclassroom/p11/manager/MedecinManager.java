@@ -1,4 +1,4 @@
-package com.openclassroom.p11.service;
+package com.openclassroom.p11.manager;
 
 import com.openclassroom.p11.dao.MedecinDao;
 import com.openclassroom.p11.model.Medecin;
