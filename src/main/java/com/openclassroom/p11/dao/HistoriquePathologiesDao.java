@@ -15,5 +15,4 @@ import java.util.Set;
 @Repository
 @DynamicUpdate
 public interface HistoriquePathologiesDao extends CrudRepository<HistoriquePathologies,Long> {
-     public List<HistoriquePathologies> findAllByPatientNumero(Long numero);
 }

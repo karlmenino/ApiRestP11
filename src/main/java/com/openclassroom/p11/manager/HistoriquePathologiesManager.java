@@ -28,7 +28,4 @@ public class HistoriquePathologiesManager {
         historique.setDate(date.format(formatter));
         historiquePathologiesDao.save(historique);
     }
-    public List<HistoriquePathologies> getHistoryByPatientNumber(Long number){
-        return historiquePathologiesDao.findAllByPatientNumero(number);
-    }
 }
