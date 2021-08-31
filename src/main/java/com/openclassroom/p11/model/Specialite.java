@@ -1,8 +1,10 @@
 package com.openclassroom.p11.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 @Data
 @Entity
@@ -20,7 +22,7 @@ public class Specialite {
     private String nom;
 
     @ManyToMany(mappedBy = "specialites")
-    private Set<Hopital> hopitals;
+    private List<Hopital> hopitals;
 
 
 }

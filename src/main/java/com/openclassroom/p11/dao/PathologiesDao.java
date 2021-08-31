@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 @DynamicUpdate
 public interface PathologiesDao extends CrudRepository<Pathologies,Long> {
-    public Optional<Pathologies> findPathologiesByNom(String nom);
+    public Pathologies findPathologiesByNom(String nom);
 
 }

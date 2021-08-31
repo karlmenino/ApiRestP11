@@ -20,6 +20,7 @@ public class Pathologies {
     @Column(name = "description", length = 255)
     private String description;
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="specialite_id")
     private Specialite specialite;
     @OneToMany(mappedBy = "pathologie", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<HistoriquePathologies> historiquePathologies;

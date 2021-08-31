@@ -14,6 +14,6 @@ public class PathologiesManager {
     public void save(Pathologies pathologies){
        pathologiesDao.save(pathologies);
     }
-
+    public Pathologies findByName(String nom){return pathologiesDao.findPathologiesByNom(nom);}
 
 }

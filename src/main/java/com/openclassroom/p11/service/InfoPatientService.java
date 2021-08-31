@@ -8,9 +8,9 @@ import com.openclassroom.p11.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 public class InfoPatientService {
@@ -19,20 +19,19 @@ public class InfoPatientService {
     @Autowired
     PatientManager patientManager;
 
-
     public InfoPatient infoPatient(Long number){
         InfoPatient infoPatient= new InfoPatient();
         Optional<Patient> patient = patientManager.findByNumber(number);
-        System.out.println(patient);
         if (patient != null){
             infoPatient.setNom(patient.get().getNom());
             infoPatient.setPrenom(patient.get().getPrenom());
             infoPatient.setNumero(patient.get().getNumero());
-            List<String>liste =  new ArrayList<String>();
+            HashMap <String,String> liste =  new HashMap();
             infoPatient.setPathologies(liste);
             for (HistoriquePathologies pathos: patient.get().getHistoriquePathologies()) {
                 String pathologie=pathos.getPathologie().getNom();
-                infoPatient.getPathologies().add(pathologie);
+                String date= pathos.getDate();
+                infoPatient.getPathologies().put(date,pathologie);
             }
         }
         return infoPatient;
