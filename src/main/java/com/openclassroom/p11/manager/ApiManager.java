@@ -23,16 +23,16 @@ public class ApiManager {
         LocalisationPatient localisationPatient=new LocalisationPatient();
         ResponseEntity<String> response;
         String ressourceUrl= "https://maps.googleapis.com/maps/api/geocode/json?address="+adresse+"&key="+apiKey;
+
         response = template.getForEntity(ressourceUrl, String.class);
         JSONObject localisation= new JSONObject(response.getBody());
-        System.out.println(localisation);
         JSONArray results= (JSONArray) localisation.get("results");
         JSONObject resultsFinal= (JSONObject) results.get(0);
         JSONObject location= (JSONObject) resultsFinal.getJSONObject("geometry").getJSONObject("location");
 
-       localisationPatient.setLatitude(location.getDouble("lat"));
+        localisationPatient.setLatitude(location.getDouble("lat"));
         localisationPatient.setLongitude(location.getDouble("lng"));
-        System.out.println(localisationPatient);
+
         return localisationPatient;
     }
 }

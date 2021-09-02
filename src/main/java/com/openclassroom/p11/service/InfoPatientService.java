@@ -29,7 +29,7 @@ public class InfoPatientService {
             HashMap <String,String> liste =  new HashMap();
             infoPatient.setPathologies(liste);
             for (HistoriquePathologies pathos: patient.get().getHistoriquePathologies()) {
-                String pathologie=pathos.getPathologie().getNom();
+                String pathologie=pathos.getSpecialite().getNom();
                 String date= pathos.getDate();
                 infoPatient.getPathologies().put(date,pathologie);
             }
