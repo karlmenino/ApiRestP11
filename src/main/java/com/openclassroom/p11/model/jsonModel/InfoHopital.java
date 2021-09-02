@@ -4,7 +4,9 @@ import lombok.Data;
 
 @Data
 public class InfoHopital {
-    private String adresse;
     private String nom;
+    private String adresse;
+    private int codePostale;
+    private String ville;
     private double distance;
 }

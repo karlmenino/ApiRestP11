@@ -18,8 +18,8 @@ public class HistoriquePathologies {
     private Patient patient;
 
     @ManyToOne
-    @JoinColumn(name="pathologies_id")
-    private Pathologies pathologie;
+    @JoinColumn(name="specialite_id")
+    private Specialite specialite;
 
     @Basic
     @Column(name = "Date", nullable = false)
@@ -41,12 +41,12 @@ public class HistoriquePathologies {
         this.patient = patient;
     }
 
-    public Pathologies getPathologie() {
-        return pathologie;
+    public Specialite getSpecialite() {
+        return specialite;
     }
 
-    public void setPathologie(Pathologies pathologie) {
-        this.pathologie = pathologie;
+    public void setSpecialite(Specialite specialite) {
+        this.specialite = specialite;
     }
 
     public String getDate() {

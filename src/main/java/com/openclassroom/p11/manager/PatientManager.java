@@ -17,16 +17,10 @@ public class PatientManager {
     public void save(Patient patient){
         patientDao.save(patient);
     }
-
-    public Iterable<Patient> listPatient(){
-       return patientDao.findAll();
-    }
     public Optional<Patient> findByNumber(Long number){
         return patientDao.findPatientByNumero(number);
     }
-    public Optional<Patient> findById(Long id){
-        return patientDao.findById(id);
-    }
+
 
 
 }
