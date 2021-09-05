@@ -6,11 +6,11 @@ import com.openclassroom.p11.manager.ApiManager;
 import com.openclassroom.p11.manager.SpecialiteManager;
 import com.openclassroom.p11.model.Hopital;
 import com.openclassroom.p11.model.Specialite;
-import com.openclassroom.p11.model.jsonModel.InfoHopital;
 import com.openclassroom.p11.model.jsonModel.LocalisationPatient;
 import com.openclassroom.p11.service.InfoHopitalProcheService;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,9 +39,14 @@ public class ApiRestController {
     }
 
     @GetMapping("/{adresse}/{pat}")
-    public InfoHopital infoHopital(@PathVariable("adresse") String adresse, @PathVariable("pat") String pat) throws JSONException {
+    public Object infoHopital(@PathVariable("adresse") String adresse, @PathVariable("pat") String pat) throws JSONException {
         LocalisationPatient localisationPatient= apiManager.localiserPatientGps(adresse);
-        Specialite specialite= specialiteManager.findByName(pat);
+        Specialite specialite= null;
+        try {
+            specialite = specialiteManager.findByName(pat);
+        } catch (Exception e) {
+            return HttpStatus.I_AM_A_TEAPOT;
+        }
         return infoHopitalProcheService.infoHopital(specialite,localisationPatient);
     }
 

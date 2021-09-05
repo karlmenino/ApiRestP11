@@ -27,6 +27,7 @@ public class Specialite {
     @ManyToMany(mappedBy = "specialites")
     private List<Hopital> hopitals;
 
+
     @OneToMany(mappedBy = "specialite", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<HistoriquePathologies> historiquePathologies;
 
