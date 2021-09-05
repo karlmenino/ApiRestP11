@@ -1,5 +1,6 @@
 package com.openclassroom.p11.service;
 
+import com.openclassroom.p11.manager.HistoriquePathologiesManager;
 import com.openclassroom.p11.manager.HopitalManager;
 import com.openclassroom.p11.model.Hopital;
 import com.openclassroom.p11.model.Specialite;
@@ -15,6 +16,7 @@ import java.util.List;
 public class InfoHopitalProcheService {
     @Autowired
     HopitalManager hopitalManager;
+
 
 
     public InfoHopital infoHopital(Specialite specialite, LocalisationPatient localisationPatient) {
@@ -51,4 +53,5 @@ public class InfoHopitalProcheService {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return distance = R * c ;
     }
+
 }

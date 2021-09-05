@@ -5,10 +5,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 @DynamicUpdate
 public interface PatientDao extends CrudRepository<Patient,Long> {
-    public Optional<Patient> findPatientByNumero(Long numero);
+    public Patient findPatientByNumero(Long numero) throws Exception ;
 }

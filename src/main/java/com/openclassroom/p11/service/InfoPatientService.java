@@ -19,16 +19,16 @@ public class InfoPatientService {
     @Autowired
     PatientManager patientManager;
 
-    public InfoPatient infoPatient(Long number){
+    public InfoPatient infoPatient(Long number) throws Exception {
         InfoPatient infoPatient= new InfoPatient();
-        Optional<Patient> patient = patientManager.findByNumber(number);
+        Patient  patient = patientManager.findByNumber(number);
         if (patient != null){
-            infoPatient.setNom(patient.get().getNom());
-            infoPatient.setPrenom(patient.get().getPrenom());
-            infoPatient.setNumero(patient.get().getNumero());
+            infoPatient.setNom(patient.getNom());
+            infoPatient.setPrenom(patient.getPrenom());
+            infoPatient.setNumero(patient.getNumero());
             HashMap <String,String> liste =  new HashMap();
             infoPatient.setPathologies(liste);
-            for (HistoriquePathologies pathos: patient.get().getHistoriquePathologies()) {
+            for (HistoriquePathologies pathos: patient.getHistoriquePathologies()) {
                 String pathologie=pathos.getSpecialite().getNom();
                 String date= pathos.getDate();
                 infoPatient.getPathologies().put(date,pathologie);

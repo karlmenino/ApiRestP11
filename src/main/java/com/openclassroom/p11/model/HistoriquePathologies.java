@@ -1,8 +1,7 @@
 package com.openclassroom.p11.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name="historiquesPathologies")

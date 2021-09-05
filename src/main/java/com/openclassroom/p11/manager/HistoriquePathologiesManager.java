@@ -7,10 +7,9 @@ import com.openclassroom.p11.model.Specialite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.Optional;
 
 @Component
 public class HistoriquePathologiesManager {
