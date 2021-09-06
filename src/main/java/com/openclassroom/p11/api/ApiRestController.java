@@ -73,8 +73,8 @@ public class ApiRestController {
 //            } catch (JSONException e) {
 //                e.printStackTrace();
 //            }
-            hopital.setSpecialites(specialite);
-            hopitalDao.save(hopital);
+//            hopital.setSpecialites(specialite);
+//            hopitalDao.save(hopital);
 
 
         }

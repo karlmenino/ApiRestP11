@@ -19,7 +19,4 @@ public class PatientManager {
     public Patient findByNumber(Long number) throws Exception {
         return patientDao.findPatientByNumero(number);
     }
-
-
-
 }
