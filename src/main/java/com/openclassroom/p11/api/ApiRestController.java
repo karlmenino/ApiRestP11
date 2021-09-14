@@ -56,7 +56,7 @@ public class ApiRestController {
         ArrayList<Specialite> specialite= (ArrayList<Specialite>) specialiteDao.findAll();
         for (Hopital hopital: listHopital
              ) {
-//            String adresse = hopital.getAdresse()+","+hopital.getCodePostale()+" "+hopital.getVille();
+//            String adresse = hopital.getNom()+", "+hopital.getVille();
 //            try {
 //
 //
@@ -73,8 +73,8 @@ public class ApiRestController {
 //            } catch (JSONException e) {
 //                e.printStackTrace();
 //            }
-//            hopital.setSpecialites(specialite);
-//            hopitalDao.save(hopital);
+            hopital.setSpecialites(specialite);
+            hopitalDao.save(hopital);
 
 
         }

@@ -26,12 +26,13 @@ public class ApiKey extends GenericFilterBean {
         HttpServletRequest req = (HttpServletRequest) request;
         String path = req.getRequestURI();
 
-        if(path.startsWith("/api") == false){
-            chain.doFilter(request, response);
-            return;
-        }
+//        if(path.startsWith("/api") == false){
+//            chain.doFilter(request, response);
+//            return;
+//        }
 
         String key = req.getHeader("Key") == null ? "" : req.getHeader("Key");
+
 
         if(key.equals(apiKey)){
             chain.doFilter(request, response);

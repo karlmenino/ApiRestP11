@@ -24,12 +24,12 @@ public class InfoHopitalProcheService {
         infoHopital.setDistance(1000.0);
         Double distance;
         List<Hopital> hopitalList = hopitalManager.HopitalProche(localisationPatient);
-        System.out.println(specialite);
 
         for (Hopital hopital : hopitalList) {
             if(hopital.getSpecialites().contains(specialite)) {
                 distance = trouverDistance(hopital.getLattitude(), hopital.getLongitude(), localisationPatient.getLatitude(), localisationPatient.getLongitude());
-
+                System.out.println(hopital.getNom());
+                System.out.println(distance);
                 if ((distance < infoHopital.getDistance()) && (hopital.getNbrDeLitsDispo() != 0)) {
                     infoHopital.setAdresse(hopital.getAdresse());
                     infoHopital.setCodePostale(hopital.getCodePostale());
@@ -47,10 +47,10 @@ public class InfoHopitalProcheService {
         final int R = 6371;
         double latDistance = Math.toRadians(latHop - latPat);
         double lonDistance = Math.toRadians(longHap - longPat);
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+        double a = Math.sin(latDistance) * Math.sin(latDistance)
                 + Math.cos(Math.toRadians(latPat)) * Math.cos(Math.toRadians(latHop))
-                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                * Math.sin(lonDistance) * Math.sin(lonDistance);
+        double c = Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return distance = R * c ;
     }
 
