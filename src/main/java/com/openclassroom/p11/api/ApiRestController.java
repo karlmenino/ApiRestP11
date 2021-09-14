@@ -5,6 +5,7 @@ import com.openclassroom.p11.dao.SpecialiteDao;
 import com.openclassroom.p11.manager.ApiManager;
 import com.openclassroom.p11.manager.SpecialiteManager;
 import com.openclassroom.p11.model.Hopital;
+import com.openclassroom.p11.model.Lit;
 import com.openclassroom.p11.model.Specialite;
 import com.openclassroom.p11.model.jsonModel.LocalisationPatient;
 import com.openclassroom.p11.service.InfoHopitalProcheService;
@@ -41,19 +42,13 @@ public class ApiRestController {
     @GetMapping("/{adresse}/{pat}")
     public Object infoHopital(@PathVariable("adresse") String adresse, @PathVariable("pat") String pat) throws JSONException {
         LocalisationPatient localisationPatient= apiManager.localiserPatientGps(adresse);
-        Specialite specialite= null;
-        try {
-            specialite = specialiteManager.findByName(pat);
-        } catch (Exception e) {
-            return HttpStatus.I_AM_A_TEAPOT;
-        }
-        return infoHopitalProcheService.infoHopital(specialite,localisationPatient);
+        return infoHopitalProcheService.infoHopital(pat,localisationPatient);
     }
 
     @GetMapping("/install")
     public void test(){
         List<Hopital> listHopital= (List<Hopital>) hopitalDao.findAll();
-        ArrayList<Specialite> specialite= (ArrayList<Specialite>) specialiteDao.findAll();
+//        ArrayList<Specialite> specialite= (ArrayList<Specialite>) specialiteDao.findAll();
         for (Hopital hopital: listHopital
              ) {
 //            String adresse = hopital.getNom()+", "+hopital.getVille();
@@ -73,8 +68,11 @@ public class ApiRestController {
 //            } catch (JSONException e) {
 //                e.printStackTrace();
 //            }
-            hopital.setSpecialites(specialite);
-            hopitalDao.save(hopital);
+//            hopital.setSpecialites(specialite);
+//            hopitalDao.save(hopital);
+//
+//            hopital.getLit().setRadio(30);
+//            hopitalDao.save(hopital);
 
 
         }

@@ -19,18 +19,18 @@ public class InfoHopitalProcheService {
 
 
 
-    public InfoHopital infoHopital(Specialite specialite, LocalisationPatient localisationPatient) {
+    public InfoHopital infoHopital(String specialite, LocalisationPatient localisationPatient) {
         InfoHopital infoHopital = new InfoHopital();
         infoHopital.setDistance(1000.0);
         Double distance;
         List<Hopital> hopitalList = hopitalManager.HopitalProche(localisationPatient);
 
         for (Hopital hopital : hopitalList) {
-            if(hopital.getSpecialites().contains(specialite)) {
+            if((hopital.getLit().litdispo(specialite)!=null)&&(hopital.getLit().litdispo(specialite)!=0)) {
                 distance = trouverDistance(hopital.getLattitude(), hopital.getLongitude(), localisationPatient.getLatitude(), localisationPatient.getLongitude());
                 System.out.println(hopital.getNom());
                 System.out.println(distance);
-                if ((distance < infoHopital.getDistance()) && (hopital.getNbrDeLitsDispo() != 0)) {
+                if ((distance < infoHopital.getDistance())) {
                     infoHopital.setAdresse(hopital.getAdresse());
                     infoHopital.setCodePostale(hopital.getCodePostale());
                     infoHopital.setVille(hopital.getVille());

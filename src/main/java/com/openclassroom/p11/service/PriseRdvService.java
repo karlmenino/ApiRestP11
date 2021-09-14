@@ -37,7 +37,7 @@ public class PriseRdvService {
             patient=new Patient(json.getNumero(),json.getNom(),json.getPrenom(),json.getAge());
             patientManager.save(patient);}
         historiquePathologiesManager.save(patient,specialite);
-        return infoHopitalProcheService.infoHopital(specialite,localisationPatient);
+        return infoHopitalProcheService.infoHopital(specialite.getNom(),localisationPatient);
 
     }
 }

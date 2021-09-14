@@ -27,12 +27,6 @@ public class Hopital {
     @Column(name = "ville", length = 60)
     private String ville;
     @Basic
-    @Column(name = "nbrDeLitsMax")
-    private int nbrDeLitsMax;
-    @Basic
-    @Column(name = "nbrDeLitsDispo")
-    private int nbrDeLitsDispo;
-    @Basic
     @Column(name = "lattitude")
     private double lattitude;
     @Basic
@@ -51,9 +45,13 @@ public class Hopital {
             inverseJoinColumns = @JoinColumn(name = "specialite_id")
     )
     private List<Specialite> specialites;
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "lit_id")
+    private Lit lit;
 
-@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<Medecin> medecins;
 
     public Long getId() {
         return id;
@@ -95,22 +93,6 @@ public class Hopital {
         this.ville = ville;
     }
 
-    public int getNbrDeLitsMax() {
-        return nbrDeLitsMax;
-    }
-
-    public void setNbrDeLitsMax(int nbrDeLitsMax) {
-        this.nbrDeLitsMax = nbrDeLitsMax;
-    }
-
-    public int getNbrDeLitsDispo() {
-        return nbrDeLitsDispo;
-    }
-
-    public void setNbrDeLitsDispo(int nbrDeLitsDispo) {
-        this.nbrDeLitsDispo = nbrDeLitsDispo;
-    }
-
     public double getLattitude() {
         return lattitude;
     }
@@ -135,13 +117,11 @@ public class Hopital {
         this.specialites = specialites;
     }
 
-    public List<Medecin> getMedecins() {
-        return medecins;
-    }
+    public Lit getLit() {return lit;}
 
-    public void setMedecins(List<Medecin> medecins) {
-        this.medecins = medecins;
-    }
+    public void setLit(Lit lit) {this.lit = lit;}
+
+
 }
 
 
