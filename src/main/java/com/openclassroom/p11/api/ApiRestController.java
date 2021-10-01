@@ -39,18 +39,14 @@ public class ApiRestController {
         return apiManager.localiserPatientGps(adresse);
     }
 
-    @GetMapping("/{adresse}/{pat}")
-    public Object infoHopital(@PathVariable("adresse") String adresse, @PathVariable("pat") String pat) throws JSONException {
-        LocalisationPatient localisationPatient= apiManager.localiserPatientGps(adresse);
-        return infoHopitalProcheService.infoHopital(pat,localisationPatient);
-    }
+
 
     @GetMapping("/install")
     public void test(){
-        List<Hopital> listHopital= (List<Hopital>) hopitalDao.findAll();
-//        ArrayList<Specialite> specialite= (ArrayList<Specialite>) specialiteDao.findAll();
-        for (Hopital hopital: listHopital
-             ) {
+//        List<Hopital> listHopital= (List<Hopital>) hopitalDao.findAll();
+////        ArrayList<Specialite> specialite= (ArrayList<Specialite>) specialiteDao.findAll();
+//        for (Hopital hopital: listHopital
+//             ) {
 //            String adresse = hopital.getNom()+", "+hopital.getVille();
 //            try {
 //
@@ -60,8 +56,7 @@ public class ApiRestController {
 //                    if (hopital.getLattitude()!= localisation.getLatitude()){
 //                    hopital.setLattitude(localisation.getLatitude());
 //                    hopital.setLongitude(localisation.getLongitude());
-//                    hopital.setNbrDeLitsDispo(250);
-//                    hopital.setNbrDeLitsMax(250);
+
 //                    hopitalDao.save(hopital);
 //                }
 //
@@ -74,8 +69,34 @@ public class ApiRestController {
 //            hopital.getLit().setRadio(30);
 //            hopitalDao.save(hopital);
 
+//            if(hopital.getId()%2==0){
+//                hopital.getLit().setChirurgie(50);
+//                hopitalDao.save(hopital);
+//            }
+//            hopital.getLit().setMedecine(30);
+//            hopitalDao.save(hopital);
+//
+//            if(hopital.getId()%3==1) {
+//                hopital.getLit().setPathologie(50);
+//                hopitalDao.save(hopital);
+//            }
+//            if(hopital.getId()%3==2) {
+//                hopital.getLit().setPediatrie(50);
+//                hopitalDao.save(hopital);
+//            }
+//            if(hopital.getId()%2==1) {
+//                hopital.getLit().setPsychiatrie(50);
+//                hopitalDao.save(hopital);
+//            }
+//        }
+        Hopital hopital=new Hopital();
 
-        }
+//        for (int i=0; i<50; i++){
+//            try{hopitalDao.save(hopital);} catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//    }
+        hopitalDao.save(hopital);
 
 
     }

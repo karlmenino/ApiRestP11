@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 
 @Component
 public class HistoriquePathologiesManager {
@@ -17,7 +16,7 @@ public class HistoriquePathologiesManager {
     @Autowired
     private HistoriquePathologiesDao historiquePathologiesDao;
 
-    public void save (Patient patient, Specialite specialite){
+    public HistoriquePathologies save (Patient patient, Specialite specialite){
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         HistoriquePathologies historique=new HistoriquePathologies();
@@ -25,6 +24,6 @@ public class HistoriquePathologiesManager {
         historique.setSpecialite(specialite);
         historique.setPatient(patient);
         historique.setDate(date.format(formatter));
-        historiquePathologiesDao.save(historique);
+        return historiquePathologiesDao.save(historique);
     }
 }

@@ -121,4 +121,8 @@ public class Lit {
     public void setChirurgie(Integer chirurgie) {
         this.chirurgie = chirurgie;
     }
+
+    public Long getId() {
+        return id;
+    }
 }

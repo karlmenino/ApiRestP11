@@ -36,7 +36,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("recup")
                 .password(bCrypt.encode("recup"))
                 .roles("ADMIN","USER")
-                .authorities("WITHDRAW","DEPOSIT","ADMIN");
+                .authorities("WITHDRAW","DEPOSIT","ADMIN","USER");
 
     }
     @Bean

@@ -28,6 +28,7 @@ public class PriseRdvService {
         LocalisationPatient localisationPatient=new LocalisationPatient();
         localisationPatient.setLongitude(json.getLng());
         localisationPatient.setLatitude(json.getLat());
+        int rayon=100;
 
         Specialite specialite;
         specialite=specialiteManager.findByName(json.getNomSpe());
@@ -37,7 +38,7 @@ public class PriseRdvService {
             patient=new Patient(json.getNumero(),json.getNom(),json.getPrenom(),json.getAge());
             patientManager.save(patient);}
         historiquePathologiesManager.save(patient,specialite);
-        return infoHopitalProcheService.infoHopital(specialite.getNom(),localisationPatient);
+        return infoHopitalProcheService.infoHopital(specialite.getNom(),localisationPatient,rayon);
 
     }
 }

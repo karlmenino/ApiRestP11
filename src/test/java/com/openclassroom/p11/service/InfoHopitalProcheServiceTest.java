@@ -1,0 +1,16 @@
+package com.openclassroom.p11.service;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class InfoHopitalProcheServiceTest {
+
+    @Test
+    void infoHopital() {
+    }
+
+    @Test
+    void trouverDistance() {
+    }
+}

@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -46,7 +47,7 @@ public class Hopital {
     )
     private List<Specialite> specialites;
     @OneToOne(
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.ALL},
             orphanRemoval = true,
             fetch = FetchType.EAGER)
     @JoinColumn(name = "lit_id")
