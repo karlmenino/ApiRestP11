@@ -8,7 +8,6 @@ public class ReponseRdv {
     private String prenom;
     private int age;
     private Long numero;
-    private double lat;
-    private double lng;
+    private String adresse;
     private String nomSpe;
 }

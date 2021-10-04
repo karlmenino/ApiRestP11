@@ -7,11 +7,13 @@ import com.openclassroom.p11.model.jsonModel.InfoPatient;
 import com.openclassroom.p11.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-
+@Transactional
 @Service
 public class InfoPatientService {
     @Autowired

@@ -1,11 +1,14 @@
 package com.openclassroom.p11.controller;
 
 import com.openclassroom.p11.manager.ApiManager;
+import com.openclassroom.p11.manager.PatientManager;
+import com.openclassroom.p11.model.Patient;
 import com.openclassroom.p11.model.jsonModel.LocalisationPatient;
 import com.openclassroom.p11.model.jsonModel.ReponseRdv;
 import com.openclassroom.p11.service.InfoHopitalProcheService;
 import com.openclassroom.p11.service.InfoPatientService;
 import com.openclassroom.p11.service.PriseRdvService;
+import lombok.experimental.Delegate;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +24,8 @@ public class ControllerApiRest {
     ApiManager apiManager;
     @Autowired
     InfoHopitalProcheService infoHopitalProcheService;
+    @Autowired
+    PatientManager patientManager;
 
 
     @GetMapping("/{numero}")
@@ -55,12 +60,24 @@ public class ControllerApiRest {
         }
         return infoHopitalProcheService.infoHopital(pat,localisationPatient,rayon);
     }
-    @GetMapping("/adresse/a{adresse}")
+    @GetMapping("/adresse/{adresse}")
     public Object localisation(@PathVariable("adresse") String adresse){
         try {
             return apiManager.localiserPatientGps(adresse);
         } catch (JSONException e) {
             return HttpStatus.I_AM_A_TEAPOT;
+        }
+    }
+    @GetMapping("/delete/{numero}")
+    public void delete(@PathVariable("numero") Long numero) {
+        Patient patient = null;
+        try {
+            patient = patientManager.findByNumber(numero);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (patient != null) {
+            patientManager.delete(patient);
         }
     }
 }

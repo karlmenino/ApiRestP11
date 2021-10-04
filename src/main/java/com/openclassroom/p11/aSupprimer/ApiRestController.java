@@ -1,24 +1,18 @@
-package com.openclassroom.p11.api;
+package com.openclassroom.p11.aSupprimer;
 
 import com.openclassroom.p11.dao.HopitalDao;
 import com.openclassroom.p11.dao.SpecialiteDao;
 import com.openclassroom.p11.manager.ApiManager;
 import com.openclassroom.p11.manager.SpecialiteManager;
 import com.openclassroom.p11.model.Hopital;
-import com.openclassroom.p11.model.Lit;
-import com.openclassroom.p11.model.Specialite;
 import com.openclassroom.p11.model.jsonModel.LocalisationPatient;
 import com.openclassroom.p11.service.InfoHopitalProcheService;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
