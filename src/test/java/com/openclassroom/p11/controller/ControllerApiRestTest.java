@@ -1,19 +1,20 @@
 package com.openclassroom.p11.controller;
 
+import com.openclassroom.p11.manager.ApiManager;
+import com.openclassroom.p11.model.jsonModel.LocalisationPatient;
+import com.openclassroom.p11.model.jsonModel.ReponseRdv;
 import com.openclassroom.p11.service.InfoHopitalProcheService;
 import com.openclassroom.p11.service.InfoPatientService;
 import com.openclassroom.p11.service.PriseRdvService;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -27,6 +28,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.BDDAssumptions.given;
 import static org.mockito.Mockito.verify;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -35,16 +37,19 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @DisplayName("Tests sur la class ControllerApiRest")
 @SpringBootTest
 @AutoConfigureMockMvc
-@ExtendWith(MockitoExtension.class)
 class ControllerApiRestTest {
     @Autowired
     public MockMvc mockMvc;
-    @Mock
-    private static InfoPatientService patient;
-    @Mock
+    @Autowired
+    private InfoPatientService patient;
+    @Autowired
     private PriseRdvService priseRdvService;
-    @Mock
+    @Autowired
     private InfoHopitalProcheService infoHopitalProcheService;
+    @Autowired
+    private ApiManager apiManager;
+
+    private ReponseRdv reponseRdv;
     private static Instant startedAt;
     @BeforeAll
     static public void initStartingTime() {
@@ -64,8 +69,7 @@ class ControllerApiRestTest {
     @WithMockUser(username = "recup",password = "recup")
     void patient() {
         //given
-//        verify(patient).infoPatient(1830393053093l);
-//        System.out.println(patient.infoPatient(1830393053093l));
+        given(patient.infoPatient(1830393053093l).getNom()).isEqualTo("nino");
 
         //when
         MockHttpServletResponse response=mockMvc.perform(get("/1830393053093")
@@ -85,7 +89,14 @@ class ControllerApiRestTest {
     @WithMockUser(username = "recup",password = "recup")
     void priseRDV() {
         //given
-//        verify(priseRdvService);
+        reponseRdv=new ReponseRdv();
+        reponseRdv.setNom("jacky");
+        reponseRdv.setPrenom("revet");
+        reponseRdv.setAdresse("hotel de ville, paris");
+        reponseRdv.setNomSpe("urgence");
+        reponseRdv.setAge(25);
+        reponseRdv.setNumero(1920391111222l);
+        given(priseRdvService.priseRdv(reponseRdv).getNom()).isEqualTo("HU PARIS CENTRE SITE HOTEL DIEU APHP");
 
         //when
 
@@ -113,7 +124,8 @@ class ControllerApiRestTest {
     @WithMockUser(username = "recup",password = "recup")
     void infoHopital() {
         //given
-//        verify(infoHopitalProcheService);
+        LocalisationPatient localisationPatient= apiManager.localiserPatientGps("hotel de ville, paris");
+        given(infoHopitalProcheService.infoHopital("urgence",localisationPatient,50).getNom()).isEqualTo("HU PARIS CENTRE SITE HOTEL DIEU APHP");
 
         //when
         MockHttpServletResponse response=mockMvc.perform(get("/hotel de ville, paris/urgence/50")
@@ -126,8 +138,6 @@ class ControllerApiRestTest {
         assertThat(json.getString("nom")).isEqualTo("HU PARIS CENTRE SITE HOTEL DIEU APHP");
         assertThat(json.getString("adresse")).isEqualTo("AVENUE PASTEUR");
         assertThat(json.getDouble("distance")).isEqualTo(0.33704447226836054);
-
-
     }
 
 }
