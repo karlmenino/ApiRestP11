@@ -1,5 +1,6 @@
 package com.openclassroom.p11.service;
 
+import com.openclassroom.p11.manager.ApiManager;
 import com.openclassroom.p11.manager.HistoriquePathologiesManager;
 import com.openclassroom.p11.manager.PatientManager;
 import com.openclassroom.p11.manager.SpecialiteManager;
@@ -22,12 +23,13 @@ public class PriseRdvService {
     PatientManager patientManager;
     @Autowired
     SpecialiteManager  specialiteManager;
+    @Autowired
+    ApiManager apiManager;
 
     public InfoHopital priseRdv(ReponseRdv json) throws Exception {
         Patient patient =null;
-        LocalisationPatient localisationPatient=new LocalisationPatient();
-        localisationPatient.setLongitude(json.getLng());
-        localisationPatient.setLatitude(json.getLat());
+        LocalisationPatient localisationPatient=apiManager.localiserPatientGps(json.getAdresse());
+        int rayon=100;
 
         Specialite specialite;
         specialite=specialiteManager.findByName(json.getNomSpe());
@@ -37,7 +39,7 @@ public class PriseRdvService {
             patient=new Patient(json.getNumero(),json.getNom(),json.getPrenom(),json.getAge());
             patientManager.save(patient);}
         historiquePathologiesManager.save(patient,specialite);
-        return infoHopitalProcheService.infoHopital(specialite,localisationPatient);
+        return infoHopitalProcheService.infoHopital(specialite.getNom(),localisationPatient,rayon);
 
     }
 }

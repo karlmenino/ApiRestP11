@@ -1,11 +1,14 @@
 package com.openclassroom.p11.dao;
 
-import com.openclassroom.p11.model.Medecin;
+import com.openclassroom.p11.model.Lit;
+import com.openclassroom.p11.model.Patient;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @DynamicUpdate
-public interface MedecinDao extends CrudRepository<Medecin,Long> {
+public interface LitDao extends CrudRepository<Lit,Long> {
 }

@@ -11,9 +11,9 @@ public class SpecialiteManager {
     @Autowired
     private SpecialiteDao specialiteDao;
 
-    public void save(Specialite specialite){
-       specialiteDao.save(specialite);
+    public Specialite save(Specialite specialite){
+       return specialiteDao.save(specialite);
     }
     public Specialite findByName(String nom){return specialiteDao.findByNom(nom);}
-
+    public void delete(Specialite specialite){specialiteDao.delete(specialite);}
 }
