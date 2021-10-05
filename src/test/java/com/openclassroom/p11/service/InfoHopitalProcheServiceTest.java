@@ -49,7 +49,7 @@ class InfoHopitalProcheServiceTest {
     void infoHopital() {
         infoHopital=new InfoHopital();
         infoHopital.setNom("HU PARIS CENTRE SITE HOTEL DIEU APHP");
-        infoHopital.setDistance(0.33704447226836054);
+        infoHopital.setDistance(0.3370444722683606);
         specialite="urgence";
         localisationPatient=apiManager.localiserPatientGps("hotel de ville, paris");
         rayon=50;

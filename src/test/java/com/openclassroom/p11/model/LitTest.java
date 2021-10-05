@@ -36,8 +36,7 @@ class LitTest {
        lit=new Lit();
        lit.setUrgence(50);
        lit.setPsychiatrie(50);
-       lit.setPediatrie(50);
-       lit.setUrgence(50);
+       lit.setChirurgie(50);
        lit.setRadio(50);
        lit.setDentaire(50);
        lit.setMedecine(50);
@@ -45,7 +44,6 @@ class LitTest {
        assertThat(lit.getChirurgie()).isEqualTo(50);
        assertThat(lit.getDentaire()).isEqualTo(50);
        assertThat(lit.getMedecine()).isEqualTo(50);
-       assertThat(lit.getPathologie()).isEqualTo(50);
        assertThat(lit.getRadio()).isEqualTo(50);
        assertThat(lit.getPsychiatrie()).isEqualTo(50);
        assertThat(lit.getUrgence()).isEqualTo(50);

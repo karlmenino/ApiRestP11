@@ -115,7 +115,7 @@ class ControllerApiRestTest {
         assertThat(json.getLong("codePostale")).isEqualTo(75181);
         assertThat(json.getString("nom")).isEqualTo("HU PARIS CENTRE SITE HOTEL DIEU APHP");
         assertThat(json.getString("adresse")).isEqualTo("AVENUE PASTEUR");
-        assertThat(json.getDouble("distance")).isEqualTo(0.33704447226836054);
+        assertThat(json.getDouble("distance")).isEqualTo(0.3370444722683606);
 
     }
 
@@ -137,7 +137,7 @@ class ControllerApiRestTest {
         assertThat(json.getLong("codePostale")).isEqualTo(75181);
         assertThat(json.getString("nom")).isEqualTo("HU PARIS CENTRE SITE HOTEL DIEU APHP");
         assertThat(json.getString("adresse")).isEqualTo("AVENUE PASTEUR");
-        assertThat(json.getDouble("distance")).isEqualTo(0.33704447226836054);
+        assertThat(json.getDouble("distance")).isEqualTo(0.3370444722683606);
     }
 
 }

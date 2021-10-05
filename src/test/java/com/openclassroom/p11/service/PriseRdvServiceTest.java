@@ -51,7 +51,7 @@ class PriseRdvServiceTest {
         result.setAdresse("AVENUE PASTEUR");
         result.setVille("PARIS CEDEX 04");
         result.setCodePostale(75181);
-        result.setDistance(0.33704447226836054);
+        result.setDistance(0.3370444722683606);
 
         assertThat(priseRdvService.priseRdv(reponseRdv)).isEqualTo(result);
 
