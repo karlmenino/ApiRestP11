@@ -2,6 +2,7 @@ package com.openclassroom.p11;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 import javax.transaction.Transactional;
 @Transactional

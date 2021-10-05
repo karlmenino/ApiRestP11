@@ -13,12 +13,13 @@ public class HopitalManager {
     @Autowired
     HopitalDao hopitalDao;
 
-    public List<Hopital> HopitalProche(LocalisationPatient localisationPatient){
-        double value=1;
+    public List<Hopital> HopitalProche(LocalisationPatient localisationPatient,double rayon){
+        double value=rayon/100;
         Double latMin=localisationPatient.getLatitude()-value;
         Double latMax=localisationPatient.getLatitude()+value;
         Double lngMin=localisationPatient.getLongitude()-value;
         Double lngMax=localisationPatient.getLongitude()+value;
         return hopitalDao.findAllByLattitudeBetweenAndLongitudeBetween(latMin,latMax,lngMin,lngMax);
+
     }
 }

@@ -55,4 +55,24 @@ public class HistoriquePathologies {
     public void setDate(String date) {
         Date = date;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        HistoriquePathologies that = (HistoriquePathologies) o;
+
+        if (!patient.equals(that.patient)) return false;
+        if (!specialite.equals(that.specialite)) return false;
+        return Date.equals(that.Date);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = patient.hashCode();
+        result = 31 * result + specialite.hashCode();
+        result = 31 * result + Date.hashCode();
+        return result;
+    }
 }
