@@ -42,10 +42,8 @@ public class ControllerApiRest {
         try {
             return priseRdvService.priseRdv(json);
         } catch (JSONException e) {
-            e.printStackTrace();
             return HttpStatus.I_AM_A_TEAPOT;
         } catch (Exception e) {
-            e.printStackTrace();
             return HttpStatus.I_AM_A_TEAPOT;
         }
     }
@@ -74,7 +72,6 @@ public class ControllerApiRest {
         try {
             patient = patientManager.findByNumber(numero);
         } catch (Exception e) {
-            e.printStackTrace();
         }
         if (patient != null) {
             patientManager.delete(patient);
