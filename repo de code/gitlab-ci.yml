@@ -1,0 +1,48 @@
+image: maven:latest
+
+stages:
+  - build
+  - test
+  - package
+
+cache:
+  paths:
+    - .m2/repository/
+
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+
+build:
+  stage: build
+  script:
+    - echo "Maven build started"
+    - mvn $MAVEN_CLI_OPTS compile
+  artifacts:
+    expire_in: 10 min
+    paths: 
+      - target/ 
+      - "*/target"
+
+test:
+  stage: test
+  script:
+    - mvn surefire-report:report
+
+  artifacts:
+    when: always
+    paths: 
+      - target/ 
+      - "*/target"
+
+package:
+  stage: package
+  script:
+    - mvn package
+  artifacts:
+    name: "app-snapshot"
+    paths:
+      - target/*.jar
+
+
